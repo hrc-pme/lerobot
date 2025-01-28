@@ -10,7 +10,7 @@ max_relative_target: null
 leader_arms:
   left:
     _target_: lerobot.common.robot_devices.motors.dynamixel.DynamixelMotorsBus
-    port: /dev/tty.usbmodem585A0085511
+    port: /dev/ttykoch_left_leader
     motors:
       # name: (index, model)
       shoulder_pan: [1, "xl330-m077"]
@@ -21,7 +21,7 @@ leader_arms:
       gripper: [6, "xl330-m077"]
   right:
     _target_: lerobot.common.robot_devices.motors.dynamixel.DynamixelMotorsBus
-    port: /dev/tty.usbmodem575E0031751
+    port: /dev/ttykoch_right_leader
     motors:
       # name: (index, model)
       shoulder_pan: [1, "xl330-m077"]
@@ -34,7 +34,7 @@ leader_arms:
 follower_arms:
   left:
     _target_: lerobot.common.robot_devices.motors.dynamixel.DynamixelMotorsBus
-    port: /dev/tty.usbmodem585A0076891
+    port: /dev/ttykoch_left_follower
     motors:
       # name: (index, model)
       shoulder_pan: [1, "xl430-w250"]
@@ -45,7 +45,7 @@ follower_arms:
       gripper: [6, "xl330-m288"]
   right:
     _target_: lerobot.common.robot_devices.motors.dynamixel.DynamixelMotorsBus
-    port: /dev/tty.usbmodem575E0032081
+    port: /dev/ttykoch_right_follower
     motors:
       # name: (index, model)
       shoulder_pan: [1, "xl430-w250"]
