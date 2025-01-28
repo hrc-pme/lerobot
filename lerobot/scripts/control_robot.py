@@ -101,6 +101,7 @@ python lerobot/scripts/control_robot.py record \
 import argparse
 import logging
 import time
+
 from pathlib import Path
 from typing import List
 
@@ -213,7 +214,7 @@ def record(
     num_image_writer_threads_per_camera=4,
     force_override=False,
     display_cameras=True,
-    play_sounds=True,
+    play_sounds=False,
 ):
     # TODO(rcadene): Add option to record logs
     listener = None
@@ -259,9 +260,10 @@ def record(
     enable_teleoperation = policy is None
     log_say("Warmup record", play_sounds)
     warmup_record(robot, events, enable_teleoperation, warmup_time_s, display_cameras, fps)
-
+    print("after warmup record")
     if has_method(robot, "teleop_safety_stop"):
         robot.teleop_safety_stop()
+        
 
     while True:
         if dataset["num_episodes"] >= num_episodes:
