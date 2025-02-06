@@ -222,7 +222,8 @@ def record_episode(
         teleoperate=policy is None,
     )
 
-
+##########################################
+#### Issue : Hanging on this function ####
 @safe_stop_image_writer
 def control_loop(
     robot,
@@ -272,10 +273,11 @@ def control_loop(
         if dataset is not None:
             add_frame(dataset, observation, action)
 
+        ## Hangs here ##
         if display_cameras and not is_headless():
             image_keys = [key for key in observation if "image" in key]
-            for key in image_keys:
-                cv2.imshow(key, cv2.cvtColor(observation[key].numpy(), cv2.COLOR_RGB2BGR))
+            # for key in image_keys:
+            #     cv2.imshow(key, cv2.cvtColor(observation[key].numpy(), cv2.COLOR_RGB2BGR))
             cv2.waitKey(1)
 
         if fps is not None:
@@ -290,82 +292,8 @@ def control_loop(
             events["exit_early"] = False
             break
 
+##########################################
 
-# @safe_stop_image_writer
-# def control_loop(
-#     robot,
-#     control_time_s=None,
-#     teleoperate=False,
-#     display_cameras=False,
-#     dataset=None,
-#     events=None,
-#     policy=None,
-#     device=None,
-#     use_amp=None,
-#     fps=None,
-# ):
-#     if not robot.is_connected:
-#         robot.connect()
-
-#     if events is None:
-#         events = {"exit_early": False}
-
-#     if control_time_s is None:
-#         control_time_s = float("inf")
-
-#     if teleoperate and policy is not None:
-#         raise ValueError("When `teleoperate` is True, `policy` should be None.")
-
-#     if dataset is not None and fps is not None and dataset["fps"] != fps:
-#         raise ValueError(f"The dataset fps should be equal to requested fps ({dataset['fps']} != {fps}).")
-
-#     timestamp = 0
-#     start_episode_t = time.perf_counter()
-
-#     def display_images(observation):
-#         """用 Threading 來顯示影像，避免主程式被卡住"""
-#         image_keys = [key for key in observation if "image" in key]
-#         for key in image_keys:
-#             try:
-#                 img = cv2.cvtColor(observation[key].numpy(), cv2.COLOR_RGB2BGR)
-#                 cv2.imshow(key, img)
-#             except Exception as e:
-#                 print(f"Warning: OpenCV Error - {e}")
-#         cv2.waitKey(1)
-
-#     while timestamp < control_time_s:
-#         start_loop_t = time.perf_counter()
-
-#         if teleoperate:
-#             observation, action = robot.teleop_step(record_data=True)
-#         else:
-#             observation = robot.capture_observation()
-
-#             if policy is not None:
-#                 pred_action = predict_action(observation, policy, device, use_amp)
-#                 action = robot.send_action(pred_action)
-#                 action = {"action": action}
-
-#         if dataset is not None:
-#             add_frame(dataset, observation, action)
-
-#         # 🛠 **用 Thread 來顯示影像，避免 OpenCV 阻塞**
-#         if display_cameras and not is_headless():
-#             threading.Thread(target=display_images, args=(observation,), daemon=True).start()
-
-#         if fps is not None:
-#             dt_s = time.perf_counter() - start_loop_t
-#             busy_wait(max(0, 1 / fps - dt_s))  # 確保不會傳負數進入 busy_wait()
-
-#         dt_s = time.perf_counter() - start_loop_t
-#         log_control_info(robot, dt_s, fps=fps)
-
-#         timestamp = time.perf_counter() - start_episode_t
-#         if events["exit_early"]:
-#             events["exit_early"] = False
-#             break
-
-#     cv2.destroyAllWindows()  # 🛑 **確保 OpenCV 視窗關閉**
 
 
 def reset_environment(robot, events, reset_time_s):
