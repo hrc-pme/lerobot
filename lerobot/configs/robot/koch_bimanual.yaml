@@ -58,14 +58,14 @@ follower_arms:
 cameras:
   realsense_319522065801:
     _target_: lerobot.common.robot_devices.cameras.opencv.OpenCVCamera
-    camera_index: 2
+    camera_index: 28
     fps: 30
     width: 640
     height: 480
 
   realsense_241222063048:
     _target_: lerobot.common.robot_devices.cameras.opencv.OpenCVCamera
-    camera_index: 8
+    camera_index: 22
     fps: 30
     width: 640
     height: 480
