@@ -155,4 +155,7 @@ dmypy.json
 cython_debug/
 
 # dataset
-hdf5/
+dataset/
+
+# temporary files 
+tmp/
