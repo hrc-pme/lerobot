@@ -120,6 +120,8 @@ def load_from_raw(
                     imgs_array = []
                     for data in ep[f"/observations/images/{camera}"]:
                         imgs_array.append(cv2.imdecode(data, 1))
+                        # decoded_img = decode_padded_jpeg(data)
+                        # imgs_array.append(decoded_img)
                     imgs_array = np.array(imgs_array)
 
                 else:
