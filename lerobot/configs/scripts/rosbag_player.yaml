@@ -1,0 +1,8 @@
+### args for rosbag_player.py ###
+
+hdf5_path: "/root/lerobot/dataset/hdf5/0302-wiping/episode_0.hdf5"
+
+DT: 0.02 # 設定時間間隔 (DT = 0.02 秒，50Hz)
+
+left_follower_topic: "/left_follower/joint_states_control"
+right_follower_topic: "/right_follower/joint_states_control"
