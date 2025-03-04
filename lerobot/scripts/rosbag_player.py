@@ -8,7 +8,7 @@ from sensor_msgs.msg import JointState
 from rclpy.node import Node
 
 # 從 YAML 檔案讀取參數
-with open('/home/pomelo925/Desktop/KochACT-RL/lerobot/lerobot/configs/scripts/rosbag_player.yaml', 'r') as file:
+with open('/root/lerobot/lerobot/configs/scripts/rosbag_player.yaml', 'r') as file:
     config = yaml.safe_load(file)
 
 hdf5_path = config['hdf5_path']

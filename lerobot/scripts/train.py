@@ -240,6 +240,7 @@ def train(cfg: DictConfig, out_dir: str | None = None, job_name: str | None = No
     if job_name is None:
         raise NotImplementedError()
 
+    # cfg.dataset_repo_id="pomelo925/koch-wiping-0302"
     init_logging()
     logging.info(pformat(OmegaConf.to_container(cfg)))
 
@@ -647,7 +648,7 @@ def train(cfg: DictConfig, out_dir: str | None = None, job_name: str | None = No
     logging.info("End of training")
 
 
-@hydra.main(version_base="1.2", config_name="default", config_path="../configs")
+@hydra.main(version_base="1.2", config_name="train", config_path="../configs")
 def train_cli(cfg: dict):
     train(
         cfg,
@@ -656,7 +657,7 @@ def train_cli(cfg: dict):
     )
 
 
-def train_notebook(out_dir=None, job_name=None, config_name="default", config_path="../configs"):
+def train_notebook(out_dir=None, job_name=None, config_name="train", config_path="../configs"):
     from hydra import compose, initialize
 
     hydra.core.global_hydra.GlobalHydra.instance().clear()

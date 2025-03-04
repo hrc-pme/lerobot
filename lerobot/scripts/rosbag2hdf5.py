@@ -12,7 +12,7 @@ from rclpy.logging import get_logger
 import time
 
 # 從 YAML 檔案中載入參數
-config_path = os.path.join(os.path.dirname(__file__), '../configs/scripts/rosbag2hdf5.yaml')
+config_path = os.path.join(os.path.dirname(__file__), './configs/rosbag2hdf5.yaml')
 with open(config_path, 'r') as file:
     config = yaml.safe_load(file)
 

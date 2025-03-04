@@ -1,0 +1,10 @@
+### args for push2hub.py ###
+
+# Hugging Face Repository identifier. Format: <username>/<repo-name>
+repo-id: pomelo925/koch-wiping-0302
+# Directory of the dataset converted to LeRobotDataset format.
+local-dir: /root/lerobot/dataset/lerobot/0302-wiping
+# set 1 to push the dataset to the hub
+push-to-hub: 1
+# Convert each episode of the raw dataset to an mp4 video.
+video: 1

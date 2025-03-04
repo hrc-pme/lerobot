@@ -10,6 +10,7 @@ camera_topics:
   cam_top: "/camera/camera_top/color/image_raw/compressed"
   cam_right: "/camera/camera_right/color/image_raw/compressed"
   cam_left: "/camera/camera_left/color/image_raw/compressed"
+  
 follower_left_topic: "/left_follower/joint_states"
 follower_right_topic: "/right_follower/joint_states"
 left_leader_topic: "/left_leader/joint_states"
