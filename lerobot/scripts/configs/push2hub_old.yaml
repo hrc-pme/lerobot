@@ -1,0 +1,27 @@
+### args for push2hub.py ###
+
+# Directory of input raw datasets
+raw-dir: /root/lerobot/dataset/hdf5/0302-wiping
+# Dataset type
+raw-format: aloha_hdf5
+# Frame rate used to collect videos.
+fps: 50
+# Convert each episode of the raw dataset to an mp4 video.
+video: 1
+# Batch size loaded by DataLoader for computing the dataset statistics.
+batch-size: 32
+# Number of processes of DataLoader for computing the dataset statistics.
+num-workers: 8
+# When set to 1, removes provided output directory if it already exists.
+force-override: 1
+# When provided, only converts the provided episodes.
+episodes: null
+# Directory of temporary videos and images generated while creating the dataset.
+cache-dir: /root/lerobot/tmp
+
+# Hugging Face Repository identifier. Format: <username>/<repo-name>
+repo-id: pomelo925/koch-wiping-0302
+# Directory of the dataset converted to LeRobotDataset format.
+local-dir: /root/lerobot/dataset/lerobot/0302-wiping
+# set 1 to push the dataset to the hub
+push-to-hub: 1

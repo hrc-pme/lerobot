@@ -1,0 +1,28 @@
+### args for visualize_dataset_html.py ###
+
+# Name of hugging face repository containing a LeRobotDataset dataset
+repo_id: "pomelo925/koch-wiping-0302"
+
+# Delete the output directory if it exists already.
+force_override: true
+
+# Root directory for a dataset stored locally (e.g. `--root data`). 
+# By default, the dataset will be loaded from hugging face cache folder, or downloaded from the hub if available.
+root: "/root/lerobot/dataset"
+
+# Episode indices to visualize (e.g. `0 1 5 6` to load episodes of index 0, 1, 5 and 6). 
+# By default loads all episodes.
+# episodes: [0, 1, 2, 3, 4]
+
+# Directory path to write html files and kickoff a web server. 
+# By default write them to 'outputs/visualize_dataset/REPO_ID'.
+output_dir: "/root/lerobot/lerobot/scripts/outputs/visualize_dataset/pomelo925/koch-wiping-0302"
+
+# Launch web server.
+serve: true
+
+# Web host used by the http server.
+host: "127.0.0.1"
+
+# Web port used by the http server.
+port: 9090

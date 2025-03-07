@@ -10,6 +10,13 @@ hydra:
     dir: /root/lerobot/outputs/train/${now:%Y-%m-%d}/${now:%H-%M-%S}_${env.name}_${policy.name}_${hydra.job.name}
   job:
     name: koch-wiping-0302
+  
+# env:
+#   action_dim': 6
+#   fps: 50
+#   name: 'sim'
+#   state_dim: 6
+#   task: None
 
 # Set `resume` to true to resume a previous run. In order for this to work, you will need to make sure
 # `hydra.run.dir` is the directory of an existing run with at least one checkpoint in it.
@@ -27,22 +34,22 @@ seed: 0
 # keys common between the datasets are kept. Each dataset gets and additional transform that inserts the
 # "dataset_index" into the returned item. The index mapping is made according to the order in which the
 # datsets are provided.
-dataset_repo_id: pomelo925/koch-wiping-0302
+dataset_repo_id: ???
 video_backend: pyav
 
 training:
-  offline_steps: 100000
+  offline_steps: ???
 
   # Number of workers for the offline training dataloader.
   num_workers: 4
 
-  batch_size: 5
+  batch_size: ???
 
   eval_freq: 10000
   log_freq: 100
   save_checkpoint: true
   # Checkpoint is saved every `save_freq` training iterations and after the last training step.
-  save_freq: 15000
+  save_freq: ???
 
   # Online training. Note that the online training loop adopts most of the options above apart from the
   # dataloader options. Unless otherwise specified.
@@ -123,7 +130,7 @@ eval:
   use_async_envs: false
 
 wandb:
-  enable: false
+  enable: true
   # Set to true to disable saving an artifact despite save_checkpoint == True
   disable_artifact: false
   project: lerobot

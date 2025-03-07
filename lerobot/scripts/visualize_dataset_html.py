@@ -56,6 +56,7 @@ import argparse
 import logging
 import shutil
 from pathlib import Path
+import yaml
 
 import tqdm
 from flask import Flask, redirect, render_template, url_for
@@ -243,60 +244,22 @@ def visualize_dataset_html(
         run_server(dataset, episodes, host, port, static_dir, template_dir)
 
 
+def load_args_from_yaml(yaml_path):
+    with open(yaml_path, 'r') as file:
+        return yaml.safe_load(file)
+
+
+def get_args():
+    config_path = "/root/lerobot/lerobot/scripts/configs/visualize_dataset_html.yaml"
+    with open(config_path, "r") as file:
+        config = yaml.safe_load(file)
+    config = {k.replace("-", "_"): v for k, v in config.items()}
+    parser = argparse.ArgumentParser(description="Visualize dataset of lerobot format.")
+    parser.set_defaults(**config)
+    return parser.parse_args()
+
 def main():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "--repo-id",
-        type=str,
-        required=True,
-        help="Name of hugging face repositery containing a LeRobotDataset dataset (e.g. `lerobot/pusht` for https://huggingface.co/datasets/lerobot/pusht).",
-    )
-    parser.add_argument(
-        "--root",
-        type=Path,
-        default=None,
-        help="Root directory for a dataset stored locally (e.g. `--root data`). By default, the dataset will be loaded from hugging face cache folder, or downloaded from the hub if available.",
-    )
-    parser.add_argument(
-        "--episodes",
-        type=int,
-        nargs="*",
-        default=None,
-        help="Episode indices to visualize (e.g. `0 1 5 6` to load episodes of index 0, 1, 5 and 6). By default loads all episodes.",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=None,
-        help="Directory path to write html files and kickoff a web server. By default write them to 'outputs/visualize_dataset/REPO_ID'.",
-    )
-    parser.add_argument(
-        "--serve",
-        type=int,
-        default=1,
-        help="Launch web server.",
-    )
-    parser.add_argument(
-        "--host",
-        type=str,
-        default="127.0.0.1",
-        help="Web host used by the http server.",
-    )
-    parser.add_argument(
-        "--port",
-        type=int,
-        default=9090,
-        help="Web port used by the http server.",
-    )
-    parser.add_argument(
-        "--force-override",
-        type=int,
-        default=0,
-        help="Delete the output directory if it exists already.",
-    )
-
-    args = parser.parse_args()
+    args = get_args()
     visualize_dataset_html(**vars(args))
 
 

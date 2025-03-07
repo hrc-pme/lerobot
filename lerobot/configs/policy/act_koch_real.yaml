@@ -13,28 +13,40 @@
 #   env=koch_real
 # ```
 
-seed: 1000
-dataset_repo_id: lerobot/koch_pick_place_lego
+seed: 0
+dataset_repo_id: pomelo925/koch-wiping-0302
 
 override_dataset_stats:
-  observation.images.laptop:
+  observation.images.cam_top:
     # stats from imagenet, since we use a pretrained vision model
     mean: [[[0.485]], [[0.456]], [[0.406]]]  # (c,1,1)
     std: [[[0.229]], [[0.224]], [[0.225]]]  # (c,1,1)
-  observation.images.phone:
+  observation.images.cam_right:
+    # stats from imagenet, since we use a pretrained vision model
+    mean: [[[0.485]], [[0.456]], [[0.406]]]  # (c,1,1)
+    std: [[[0.229]], [[0.224]], [[0.225]]]  # (c,1,1)
+  observation.images.cam_left:
+    # stats from imagenet, since we use a pretrained vision model
+    mean: [[[0.485]], [[0.456]], [[0.406]]]  # (c,1,1)
+    std: [[[0.229]], [[0.224]], [[0.225]]]  # (c,1,1)
+  observation.images.cam_first:
+    # stats from imagenet, since we use a pretrained vision model
+    mean: [[[0.485]], [[0.456]], [[0.406]]]  # (c,1,1)
+    std: [[[0.229]], [[0.224]], [[0.225]]]  # (c,1,1)
+  observation.images.cam_far:
     # stats from imagenet, since we use a pretrained vision model
     mean: [[[0.485]], [[0.456]], [[0.406]]]  # (c,1,1)
     std: [[[0.229]], [[0.224]], [[0.225]]]  # (c,1,1)
 
 training:
-  offline_steps: 80000
+  offline_steps: 50000
   online_steps: 0
   eval_freq: -1
   save_freq: 10000
   log_freq: 100
   save_checkpoint: true
 
-  batch_size: 8
+  batch_size: 10
   lr: 1e-5
   lr_backbone: 1e-5
   weight_decay: 1e-4
@@ -54,21 +66,27 @@ policy:
 
   # Input / output structure.
   n_obs_steps: 1
-  chunk_size: 100
-  n_action_steps: 100
+  chunk_size: 25
+  n_action_steps: 25
 
   input_shapes:
     # TODO(rcadene, alexander-soare): add variables for height and width from the dataset/env?
-    observation.images.laptop: [3, 480, 640]
-    observation.images.phone: [3, 480, 640]
+    observation.images.cam_top: [3, 480, 640]
+    observation.images.cam_right: [3, 480, 640]
+    observation.images.cam_left: [3, 480, 640]
+    observation.images.cam_first: [3, 480, 640]
+    observation.images.cam_far: [3, 480, 640]
     observation.state: ["${env.state_dim}"]
   output_shapes:
     action: ["${env.action_dim}"]
 
   # Normalization / Unnormalization
   input_normalization_modes:
-    observation.images.laptop: mean_std
-    observation.images.phone: mean_std
+    observation.images.cam_top: mean_std
+    observation.images.cam_right: mean_std
+    observation.images.cam_left: mean_std
+    observation.images.cam_first: mean_std
+    observation.images.cam_far: mean_std
     observation.state: mean_std
   output_normalization_modes:
     action: mean_std

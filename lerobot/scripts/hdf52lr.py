@@ -97,7 +97,7 @@ def convert_dataset(
     return lerobot_dataset
 
 def get_args():
-    config_path = "/root/lerobot/lerobot/configs/scripts/push2hub.yaml"
+    config_path = "/root/lerobot/lerobot/scripts/configs/push2hub.yaml"
     with open(config_path, "r") as file:
         config = yaml.safe_load(file)
     config = {k.replace("-", "_"): v for k, v in config.items()}
