@@ -9,7 +9,7 @@ hydra:
     # with the same value for `dir` its contents will be overwritten unless you set `resume` to true.
     dir: /root/lerobot/outputs/train/${now:%Y-%m-%d}/${now:%H-%M-%S}_${env.name}_${policy.name}_${hydra.job.name}
   job:
-    name: koch-wiping-0302
+    name: 0315-wipe-420-fps15-linear-resample
   
 # env:
 #   action_dim': 6

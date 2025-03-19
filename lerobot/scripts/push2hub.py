@@ -277,7 +277,7 @@ def push_dataset_to_hub(
 
 # Set YAML values as default args
 def get_args():
-    config_path = "/root/lerobot/lerobot/scripts/configs/push2hub_old.yaml"
+    config_path = "/root/lerobot/lerobot/scripts/configs/push2hub.yaml"
     with open(config_path, "r") as file:
         config = yaml.safe_load(file)
 

@@ -1,7 +1,7 @@
 ### args for visualize_dataset_html.py ###
 
 # Name of hugging face repository containing a LeRobotDataset dataset
-repo_id: "pomelo925/koch-wiping-0302"
+repo_id: "pomelo925/0315-wipe"
 
 # Delete the output directory if it exists already.
 force_override: true
@@ -16,7 +16,7 @@ root: "/root/lerobot/dataset"
 
 # Directory path to write html files and kickoff a web server. 
 # By default write them to 'outputs/visualize_dataset/REPO_ID'.
-output_dir: "/root/lerobot/lerobot/scripts/outputs/visualize_dataset/pomelo925/koch-wiping-0302"
+output_dir: "/root/lerobot/lerobot/scripts/outputs/visualize_dataset/pomelo925/0315-wipe"
 
 # Launch web server.
 serve: true
