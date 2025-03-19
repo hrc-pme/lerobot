@@ -204,7 +204,7 @@ class Rosbag2HDF5Converter:
 
         # Save images to HDF5
         image_group.create_dataset(cam_name, data=padded_images, dtype="uint8")
-
+  
       # Save joint data
       obs.create_dataset("qpos", data=qpos, dtype="float32")
       f.create_dataset("action", data=action, dtype="float32")
